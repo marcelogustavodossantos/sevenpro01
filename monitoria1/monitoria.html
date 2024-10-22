@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha de Monitoria</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        #form-container {
+            color: #333;
+            font-size: 16px;
+            line-height: 1.6;
+            background-color: white;
+            padding: 20px;
+            border: 2px solid #ff3b3b;
+            border-radius: 12px;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="date"], input[type="number"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: none;
+            height: 100px;
+        }
+
+        button {
+            width: 100%;
+            background-color: #ff3b3b;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #e60000;
+        }
+    </style>
+    <script>
+        // Script para preencher o campo de data automaticamente com a data atual
+        window.onload = function() {
+            var today = new Date().toISOString().substr(0, 10);
+            document.getElementById("data").value = today;
+        }
+    </script>
+</head>
+<body>
+
+    <div id="form-container">
+        <h1>Ficha de Monitoria</h1>
+        <form action="http://localhost:3000/monitoria" method="POST">
+            <label for="nome">Nome do Operador:</label>
+            <input type="text" id="nome" name="nome" required>
+
+            <label for="equipe">Equipe do Operador:</label>
+            <select id="equipe" name="equipe" required>
+                <option value="">Selecione uma equipe</option>
+                <option value="GRAZI - FÊNIX">GRAZI - FÊNIX</option>
+                <option value="THAINA - SINTONIA">THAINA - SINTONIA</option>
+                <option value="NATHAN - ELITE">NATHAN - ELITE</option>
+                <option value="PEDRO - FERA">PEDRO - FERA</option>
+                <option value="LETICIA - INVICTUS">LETICIA - INVICTUS</option>
+                <option value="GUSTAVO - VELOZES E FURIOSOS">GUSTAVO - VELOZES E FURIOSOS</option>
+                <option value="VIGAS - LION">VIGAS - LION</option>
+            </select>
+
+            <label for="data">Data:</label>
+            <input type="date" id="data" name="data" required>
+
+            <label for="pontos_positivos">Pontos Positivos:</label>
+            <textarea id="pontos_positivos" name="pontos_positivos" required></textarea>
+
+            <label for="pontos_negativos">Pontos Negativos:</label>
+            <textarea id="pontos_negativos" name="pontos_negativos" required></textarea>
+
+            <label for="numero_ligacoes">Número de Ligações:</label>
+            <input type="number" id="numero_ligacoes" name="numero_ligacoes" required>
+
+            <label for="ligacoes_acima_5">Ligações acima de 5 minutos:</label>
+            <input type="number" id="ligacoes_acima_5" name="ligacoes_acima_5" required>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+</body>
+</html>
