@@ -1,0 +1,291 @@
+<!DOCTYPE html> 
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contrato de Portabilidade</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .section-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .input-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .input-table td {
+            padding: 8px;
+            vertical-align: top;
+        }
+
+        .input-table label {
+            font-weight: bold;
+        }
+
+        .full-width {
+            width: 100%;
+        }
+
+        .declaration {
+            margin-top: 20px;
+            font-size: 0.9em;
+            text-align: justify;
+        }
+
+        .signature-line {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .signature-line hr {
+            width: 80%;
+            border: 1px solid #000;
+            margin: 10px auto;
+        }
+
+        .signature-name {
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        .declarations-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .declarations-list li {
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="content">
+        <h2 style="text-align: center;">CONTRATO DE PORTABILIDADE</h2>
+
+
+        
+        <!-- Dados do Cliente -->
+
+
+        <div class="section-title">I. DADOS DO CLIENTE:</div>
+        <table class="input-table">
+            <tr>
+                <td>
+                    <label>Orgão Averbador:</label><br>
+                    <input type="text" id="orgaoAverbador" value="INSS" class="full-width">
+                </td>
+                <td colspan="2">
+                    <label>Nome completo (sem abreviações):</label><br>
+                    <input type="text" id="nomeCompleto" class="full-width">
+                </td>
+                <td>
+                    <label>Telefone:</label><br>
+                    <input type="text" id="telefone" class="full-width">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>CPF:</label><br>
+                    <input type="text" id="cpf" class="full-width">
+                </td>
+                <td>
+                    <label>Data de Nascimento:</label><br>
+                    <input type="date" id="dataNascimento" class="full-width">
+                </td>
+                <td>
+                    <label>Matrícula:</label><br>
+                    <input type="text" id="matricula" class="full-width">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label>Logradouro:</label><br>
+                    <input type="text" id="logradouro" class="full-width">
+                </td>
+                <td>
+                    <label>Bairro:</label><br>
+                    <input type="text" id="bairro" class="full-width">
+                </td>
+                <td>
+                    <label>Cidade:</label><br>
+                    <input type="text" id="cidade" class="full-width">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>UF:</label><br>
+                    <input type="text" id="uf" class="full-width">
+                </td>
+                <td>
+                    <label>CEP:</label><br>
+                    <input type="text" id="cep" class="full-width">
+                </td>
+            </tr>
+        </table>
+
+
+
+       <!-- Simulação das Condições Financeiras da Proposta de Empréstimo -->
+        <div class="section-title">II. SIMULAÇÃO DAS CONDIÇÕES FINANCEIRAS DA PROPOSTA DE EMPRÉSTIMO:</div>
+        <div class="section-title">PORTABILIDADE DE DÍVIDAS</div>
+        <table class="input-table">
+            <tr>
+                <td>
+                    <label>Banco:</label><br>
+                    <input type="text" id="bancoPortabilidade" class="full-width">
+                </td>
+                <td>
+                    <label>Nº Parcelas:</label><br>
+                    <input type="number" id="numParcelasPortabilidade" class="full-width">
+                </td>
+                <td>
+                    <label>Valor da Parcela:</label><br>
+                    <input type="text" id="valorParcelaPortabilidade" class="full-width">
+                </td>
+                <td>
+                    <label>Saldo Devedor Aproximado:</label><br>
+                    <input type="text" id="saldoDevedor" class="full-width">
+                </td>
+            </tr>
+        </table>
+
+
+
+        <!-- Banco Comprador - Novo Contrato -->
+        <div class="section-title">BANCO COMPRADOR - NOVO CONTRATO</div>
+        <div>MANTENDO O MESMO PRAZO, COM REDUÇÃO DO VALOR DE PARCELA E NA TAXA DE JUROS</div>
+        <table class="input-table">
+            <tr>
+                <td>
+                    <label>Banco:</label><br>
+                    <input type="text" id="bancoComprador" class="full-width">
+                </td>
+                <td>
+                    <label>Valor da Parcela:</label><br>
+                    <input type="text" id="valorParcela" class="full-width">
+                </td>
+                <td>
+                    <label>Nº de Parcelas:</label><br>
+                    <input type="number" id="numParcelasComprado" class="full-width">
+                </td>
+                <td>
+                    <label>Valor Líquido:</label><br>
+                    <input type="text" id="valorLiquido" class="full-width">
+                </td>
+            </tr>
+        </table>
+
+
+        
+        <!-- Declarações -->
+        <div class="section-title">Declarações:</div>
+        <ul class="declarations-list">
+            <li>III. Declaro estar ciente que a validade e eficácia dos valores contidos nesse Contrato de Empréstimo Consignado, estão condicionadas à confirmação da margem disponível junto ao Órgão averbador e do Saldo Devedor Real juntos aos bancos, acima informados.</li>
+            <li>IV. Declaro estar ciente que caso o Órgão averbador não confirme a averbação da totalidade do empréstimo e no caso da Portabilidade o saldo devedor possua diferença dos valores contidos neste Contrato de Empréstimo Consignado poderão sofrer alterações e a parcela ficará enquadrada proporcionalmente, para mais ou menos, de acordo com o saldo devedor recepcionado.</li>
+            <li>V. O número de parcelas do novo Contrato será sempre o mesmo número existente no banco origem.</li>
+            <li>VI. A intermediação da transação financeira de Empréstimo Consignado, será feita exclusivamente pela empresa QUALICONSIG PROMOTORA DE CRÉDITO com CNPJ: 27.733.374/0001-72, obrigando-se a não tratar direta ou indiretamente com outra empresa e condicionando o mesmo ao não envio de documentos e contratos até que se finde a relação comercial.</li>
+            <li>VII. Declaro estar ciente, da contratação e do envio dos documentos RG, CPF, Comprovante de Residência e Contrato de Empréstimo Consignado assinado.</li>
+            <li>VIII. Fica VETADO, sobre todas as hipóteses, o uso da margem, quando o saldo devedor for pago ao banco de origem, caso alguma das informações supracitadas e a inobservância causar danos monetários a empresa citada na cláusula VI., a mesma poderá promover a cobrança do respectivo valor das formas que dispuser, seja judicial ou extra-judicial, ficando o cliente mencionado na cláusula I., responsável pelo pagamento das custas geradas e honorários advocatícios.</li>
+        </ul>
+
+
+
+        <!-- Assinatura -->
+        <div class="signature-line">
+            <hr>
+            <div class="signature-name" id="nomeFinal"></div>
+            <div><script>
+                function atualizarData() {
+                    const meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+                    const dataAtual = new Date();
+                    const dia = dataAtual.getDate();
+                    const mes = meses[dataAtual.getMonth()];
+                    const ano = dataAtual.getFullYear();
+                    document.getElementById("data").innerText = `São Paulo, ${dia} de ${mes} de ${ano}`;
+                }
+        
+                document.addEventListener("DOMContentLoaded", atualizarData);
+            </script></div>
+        </div>
+
+
+
+        <!-- Botão para gerar PDF -->
+        <button id="gerarPdfBtn" onclick="gerarPDF()">Gerar PDF</button>
+    </div>
+
+    <script>
+        async function gerarPDF() {
+            const { jsPDF } = window.jspdf;
+
+            try {
+                // Adiciona o valor da assinatura
+                const nomeCompleto = document.getElementById('nomeCompleto').value;
+                document.getElementById('nomeFinal').innerText = nomeCompleto;
+
+                const gerarPdfBtn = document.getElementById("gerarPdfBtn");
+                gerarPdfBtn.style.display = 'none'; // Ocultar o botão antes de gerar o PDF
+
+                const content = document.getElementById('content');
+                const canvas = await html2canvas(content, { scale: 2 });
+
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jsPDF('p', 'mm', 'a4');
+
+                const pageHeight = 297; // Altura da página A4 em mm
+                let imgWidth = 210; // Largura da página A4 em mm
+                let imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+                let position = 0;
+
+                while (imgHeight > 0) {
+                    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, Math.min(pageHeight, imgHeight));
+                    imgHeight -= pageHeight;
+                    position -= pageHeight;
+
+                    if (imgHeight > 0) {
+                        pdf.addPage();
+                    }
+                }
+
+                pdf.save('Contrato_de_Portabilidade.pdf');
+
+                gerarPdfBtn.style.display = 'block'; // Tornar o botão visível novamente
+            } catch (error) {
+                console.error('Erro ao gerar PDF:', error);
+                gerarPdfBtn.style.display = 'block'; // Tornar o botão visível em caso de erro
+            }
+        }
+    </script>
+</body>
+
+</html>

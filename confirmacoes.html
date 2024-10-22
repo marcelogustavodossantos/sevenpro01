@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleção de Texto com Edição</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        #texto {
+            color: #333;
+            font-size: 16px;
+            line-height: 1.6;
+            background-color: white;
+            padding: 20px;
+            border: 2px solid #ff3b3b;
+            border-radius: 12px;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .btn-opcao {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .btn-opcao img {
+            width: 150px;
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.2s;
+        }
+
+        .btn-opcao img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border: 2px solid #ff3b3b;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .close {
+            color: #ff3b3b;
+            font-size: 24px;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #ff1a1a;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            background-color: #ff3b3b;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #e60000;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Escolha o texto de confirmação</h2>
+
+
+
+    <!-- Botões com imagens para escolher o texto -->
+    <button class="btn-opcao" id="btnTexto1">
+        <img src="https://7sevenpro.netlify.app/inbursa.png" alt="Texto 1">
+    </button>
+
+    <button class="btn-opcao" id="btnTexto2">
+        <img src="https://7sevenpro.netlify.app/quali.png" alt="Texto 2">
+    </button>
+
+    <button class="btn-opcao" id="btnTexto3">
+        <img src="https://i.ibb.co/Ns97zYT/REFINANCIAMENTO-removebg-preview.png" alt="Texto 3">
+    </button>
+
+
+
+    <!-- Exibição do texto selecionado -->
+    <p id="texto">
+        Selecione um dos botões acima para visualizar o texto de confirmação correspondente.
+    </p>
+</div>
+
+
+
+<!-- Modal para edição de texto -->
+<div id="meuModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Edite as informações</h2>
+        <form id="formulario">
+            <label for="beneficiario">Beneficiário:</label>
+            <input type="text" id="beneficiario" name="beneficiario"><br><br>
+            <label for="cpf">CPF:</label>
+            <input type="text" id="cpf" name="cpf"><br><br>
+            <label for="vendedor">Vendedor:</label>
+            <input type="text" id="vendedor" name="vendedor"><br><br>
+            <label for="valorAtual">Valor Atual:</label>
+            <input type="text" id="valorAtual" name="valorAtual"><br><br>
+            <label for="banco">Banco:</label>
+            <input type="text" id="banco" name="banco"><br><br>
+            <label for="valorReduzido">Valor Reduzido:</label>
+            <input type="text" id="valorReduzido" name="valorReduzido"><br><br>
+            <button type="button" id="btnSalvar">Salvar</button>
+        </form>
+    </div>
+</div>
+
+<script>
+
+
+    // Obter elementos do DOM
+    var modal = document.getElementById("meuModal");
+    var btnSalvar = document.getElementById("btnSalvar");
+    var span = document.getElementsByClassName("close")[0];
+
+
+    // Variáveis para armazenar os valores dos placeholders
+    var beneficiario = "João da Silva";
+    var cpf = "123.456.789-10";
+    var vendedor = "Carlos Pereira";
+    var valorAtual = "800,00";
+    var banco = "Banco do Brasil";
+    var valorReduzido = "600,00";
+
+    var textoSelecionado = ''; // Variável para armazenar o texto selecionado
+
+
+
+
+    // Definir os textos de confirmação
+    function getTexto1() {
+        return `
+            PORTABILIDADE COM REFINANCIAMENTO<br>
+            Sr (a) ${beneficiario} CPF: ${cpf}, sou o ${vendedor} supervisor comercial da Empresa XXXXXXX CNPJ XXXXXXXXXXXXXXX.<br>
+            O Motivo do contato é para confirmar a PORTABILIDADE COM REFINANCIAMENTO, parcela ativa de R$ ${valorAtual} do Banco Itaú para o Qualibanking / QI SCD. Valor do troco aproximado de R$ ${valorReduzido} no prazo de 84 meses.<br>
+            O Saldo devedor é uma estimativa aproximada e a proposta inicial ofertada poderá sofrer alterações mediante ao saldo devedor real enviado por sua instituição financeira atual credora (banco originador).<br>
+            Cliente ciente que o valor do troco está condicionado ao saldo devedor informado pelo Banco Originador e que concorda com o pagamento automático da proposta.<br>
+            Lembrando que essa operação é gratuita e a empresa não solicita nenhum valor de pagamento ou comissão (via pix, depósito bancário e boletos) para realização desta portabilidade.<br>
+            O (a) sr. (a), confirma o envio da documentação e autoriza o andamento da proposta?<br>
+            1 - SIM<br>
+            2 - NÃO<br>
+            Obrigada pelas confirmações!
+        `;
+    }
+
+    function getTexto2() {
+        return `
+            PORTABILIDADE COM REDUÇÃO DA PARCELA<br>
+            Sr (a) ${beneficiario}, CPF: ${cpf}, sou o ${vendedor} supervisor comercial<br>
+            O Motivo do contato é para confirmar a PORTABILIDADE COM REDUÇÃO DA PARCELA, parcela ativa de R$ ${valorAtual} do Banco ${banco} para o Qualibanking / QI SCD. O valor da parcela reduzida será de aproximadamente R$ ${valorReduzido}, permanecendo o prazo atual do contrato.<br>
+            O Saldo devedor é uma estimativa aproximada e a proposta inicial ofertada poderá sofrer alterações mediante ao saldo devedor real enviado por sua instituição financeira atual credora ${banco}.<br>
+            Lembrando que essa operação é gratuita e a empresa não solicita nenhum valor de pagamento ou comissão (via pix, depósito bancário e boletos) para realização desta portabilidade.<br>
+            Caso o saldo devedor não seja enviado por sua instituição financeira atual credora ${banco} na primeira solicitação na data que deveria enviar, você autoriza a realização de mais duas solicitações?<br>
+            O (a) sr. (a), confirma o envio da documentação e autoriza o andamento da proposta?<br>
+            1 – SIM<br>
+            2 - NÃO<br>
+            Obrigada pelas confirmações!<br>
+            Lembrando que a operação de PORTABILIDADE apenas com REDUÇÃO não gera troco.
+        `;
+    }
+
+    function getTexto3() {
+        return `
+            CONSOLIDAÇÃO DE DÍVIDAS<br>
+            Sr (a) ${beneficiario}, CPF: ${cpf}, oferecemos a possibilidade de consolidação de suas dívidas em uma única parcela.<br>
+            Isso permitirá uma melhor gestão financeira e possivelmente uma taxa de juros mais baixa.<br>
+            Cliente ciente de que o saldo consolidado será avaliado pela instituição financeira e concorda com o pagamento da parcela única mensal.<br>
+            O serviço não implica em cobrança antecipada de nenhum valor.<br>
+            O (a) sr. (a) confirma a continuidade da proposta?<br>
+            1 - SIM<br>
+            2 - NÃO<br>
+            Obrigada por sua consideração!
+        `;
+    }
+
+    
+
+    // Abrir modal para edição ao clicar em qualquer botão
+    document.getElementById('btnTexto1').onclick = function() {
+        textoSelecionado = 'texto1';
+        modal.style.display = "flex";
+    }
+
+    document.getElementById('btnTexto2').onclick = function() {
+        textoSelecionado = 'texto2';
+        modal.style.display = "flex";
+    }
+
+    document.getElementById('btnTexto3').onclick = function() {
+        textoSelecionado = 'texto3';
+        modal.style.display = "flex";
+    }
+
+    // Fechar modal ao clicar no "X"
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // Fechar modal ao clicar fora dele
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    // Salvar valores e exibir o texto atualizado
+    btnSalvar.onclick = function() {
+        // Obter os valores do formulário
+        beneficiario = document.getElementById("beneficiario").value;
+        cpf = document.getElementById("cpf").value;
+        vendedor = document.getElementById("vendedor").value;
+        valorAtual = document.getElementById("valorAtual").value;
+        banco = document.getElementById("banco").value;
+        valorReduzido = document.getElementById("valorReduzido").value;
+
+        // Exibir o texto correto com os valores atualizados
+        if (textoSelecionado === 'texto1') {
+            document.getElementById('texto').innerHTML = getTexto1();
+        } else if (textoSelecionado === 'texto2') {
+            document.getElementById('texto').innerHTML = getTexto2();
+        } else if (textoSelecionado === 'texto3') {
+            document.getElementById('texto').innerHTML = getTexto3();
+        }
+
+        // Fechar o modal
+        modal.style.display = "none";
+    }
+</script>
+
+</body>
+</html>

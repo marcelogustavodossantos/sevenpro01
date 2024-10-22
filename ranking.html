@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    
+    
+    
+        <!-- CSS integrado à pagína-->
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden; /* Para remover barras de rolagem */
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none; /* Para remover a borda */
+        }
+    </style>
+    <title>ranking vendas</title>
+</head>
+<body>
+    
+    
+    
+
+
+        <!-- intro -->
+<style>
+    .intro {
+        width: 100%;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+        overflow: hidden;
+    }
+    .intro video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+  </style>
+  </head>
+  <body>
+  <div class="intro">
+    <video autoplay muted loop id="introVideo">
+        <source src="intro_SevenPRO.mp4" type="video/mp4">
+        <source src="intro_SevenPRO.webm" type="video/webm">
+        Your browser does not support the video tag.
+    </video>
+  </div>
+  <!-- final da intro -->
+
+
+
+  
+  
+  <!-- link power BI --> <iframe title="ranking pronto com podio" width="600" height="373.5" 
+                            src="https://app.powerbi.com/view?r=eyJrIjoiMjEyNDMzNWEtYjI3Zi00NjZiLWFlMGEtOGNkYTM1OThhNTA3IiwidCI6ImZhNjM1NjQ3LTNjZDYtNDMxMC1hN2M3LTk4MzQ0NGRkZmNhOCJ9"
+                                frameborder="0" allowFullScreen="true"></iframe>
+   
+    <!-- script intro -->  
+   <script>
+    // Quando a página é carregada
+    window.onload = function() {
+        // Definindo a duração do vídeo em segundos
+        var videoDuration = 1; // 3 segundos
+
+        // Selecione o vídeo de introdução
+        var introVideo = document.getElementById('introVideo');
+
+        // Definindo o tempo limite para o vídeo de introdução
+        setTimeout(function() {
+            // Ocultando a introdução e removendo-a do DOM
+            document.querySelector('.intro').style.display = 'none';
+            introVideo.pause(); // Pausando o vídeo
+            introVideo.currentTime = 0; // Reiniciando o vídeo para o início
+        }, videoDuration * 500); // Multiplicando por 1000 para converter segundos em milissegundos
+    };
+  </script>
+    <!-- final do script de intro -->
+
+
+</body>
+</html>

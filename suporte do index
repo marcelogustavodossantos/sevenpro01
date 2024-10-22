@@ -1,0 +1,29 @@
+ <!-- Suporte-->
+  <section id="contact">
+    <div class="contact container">
+      <div>
+
+
+        <h1 class="section-title">sup<span>orte</span></h1>
+      </div>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/phone.png" /></div>
+          <div class="contact-info">
+            <h1>VIDEOS</h1>
+            <h2><a href="tuto.html" style="text-decoration: none; color: inherit;">Clique aqui</a></h2>
+            <h2></h2>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/new-post.png" /></div>
+          <div class="contact-info">
+            <h1>DISCORD</h1>
+            <h2><a href="https://discordapp.com/channels/1197562797471567983/1197975707670818886" style="text-decoration: none; color: inherit;">Clique aqui</a></h2>
+          </div>
+        </div>    
+    </div>
+  </section>
+
+
+  <!-- final Suporte -->

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria de Vídeos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ebebeb;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: 50px auto;
+        }
+        h1 {
+            text-align: center;
+            color: #ff0000;
+            margin-bottom: 50px;
+        }
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .video-item {
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #ff0000;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: #f3f3f3;
+        }
+        .video-item h2 {
+            text-align: center;
+            color: #ff0000;
+            margin-bottom: 10px;
+        }
+        .video-item video {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Assista aos Nossos Vídeos</h1>
+        <div class="video-grid">
+            <div class="video-item">
+                <h2>Título do Vídeo 1</h2>
+                <video controls>
+                    <source src="video1.mp4" type="video/mp4">
+                    Seu navegador não suporta a exibição deste vídeo.
+                </video>
+            </div>
+            <div class="video-item">
+                <h2>Título do Vídeo 2</h2>
+                <video controls>
+                    <source src="video2.mp4" type="video/mp4">
+                    Seu navegador não suporta a exibição deste vídeo.
+                </video>
+            </div>
+            <div class="video-item">
+                <h2>Título do Vídeo 3</h2>
+                <video controls>
+                    <source src="video3.mp4" type="video/mp4">
+                    Seu navegador não suporta a exibição deste vídeo.
+                </video>
+            </div>
+            <div class="video-item">
+                <h2>Título do Vídeo 4</h2>
+                <video controls>
+                    <source src="video4.mp4" type="video/mp4">
+                    Seu navegador não suporta a exibição deste vídeo.
+                </video>
+            </div>
+            <div class="video-item">
+                <h2>Título do Vídeo 5</h2>
+                <video controls>
+                    <source src="video5.mp4" type="video/mp4">
+                    Seu navegador não suporta a exibição deste vídeo.
+                </video>
+            </div>
+            <div class="video-item">
+                <h2>Título do Vídeo 6</h2>
+                <video controls>
+                    <source src="video6.mp4" type="video/mp4">
+                    Seu navegador não suporta a exibição deste vídeo.
+                </video>
+            </div>
+            <div class="video-item">
+                <h2>Título do Vídeo 7</h2>
+                <video controls>
+                    <source src="video7.mp4" type="video/mp4">
+                    Seu navegador não suporta a exibição deste vídeo.
+                </video>
+            </div>
+            <div class="video-item">
+                <h2>Título do Vídeo 8</h2>
+                <video controls>
+                    <source src="video8.mp4" type="video/mp4">
+                    Seu navegador não suporta a exibição deste vídeo.
+                </video>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
